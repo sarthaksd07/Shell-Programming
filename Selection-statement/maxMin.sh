@@ -1,27 +1,38 @@
 #!/bin/bash -x
 
-digit1=$((RANDOM%999))
-digit2=$((RANDOM%999))
-digit3=$((RANDOM%999))
-digit4=$((RANDOM%999))
-digit5=$((RANDOM%999))
+a=$(((RANDOM%900)+99))
+b=$(((RANDOM%900)+99))
+c=$(((RANDOM%900)+99))
+d=$(((RANDOM%900)+99))
+e=$(((RANDOM%900)+99))
 
-if [ $digit1 -gt $digit2 && $digit1 -gt $digit3 && $digit1 -gt $digit4 $$ $digit1 -gt $digit5 ]
-then
-echo "$Digit1 is maximum"
-fi
-elif [ $digit2 -gt $digit3 && $digit2 -gt $digit4 && $digit2 -gt $digit5 ]
-then
-echo "$Digit2 is maximum"
-fi
-elif [ $digit3 -gt $digit4 && $digit3 -gt $digit5 ]
-then
-echo "$digit3 is maximum"
-fi
-elif [ $digit4 -gt $digit5 ]
-then
-echo "$digit4 is maximum"
-fi
+if [ $a -ge $b -a $a -ge $c -a $a -ge $d -a $a -ge $e ]
+	then
+		echo "$a is maximum"
+elif [ $b -ge $a -a $b -ge $c -a $b -gt $e ]
+	then
+		echo "$b is maximum"
+elif [ $c -ge $d -a $c -gt $e ]
+	then
+		echo "$c is maximum"
+elif [ $d -ge $e ]
+	then
+		echo "$d is maximum"
 else
-echo "$digit5 is maximum"
+		echo "$e is maximum"
+fi
+if [ $a -le $b -a $a -le $c -a $a -le $d -a $a -le $e ];
+	then
+		echo "$a is minimum";
+elif [ $b -le $a -a $b -le $c -a $b -le $d -a $b -le $e ];
+	then
+		echo "$b is minimum";
+elif [ $c -le $b -a $c -le $a -a $c -le $d -a $c -le $e ];
+	then
+		echo "$c is minimum";
+elif [ $d -le $b -a $d -le $a -a $d -le $a -a $d -le $e ];
+	then
+		echo "$d is minimum";
+else
+		echo "$e is minimum";
 fi
