@@ -12,9 +12,9 @@ do
 			((count++))
 		fi
 	done
-	
+
 	if [ $count -eq 2 ]
 	then
 		echo $i;
 	fi
-done 
+done
