@@ -1,38 +1,33 @@
-#! /bin/bash -x
+#!/bin/bash -x
 
-function palindrome(){
-	flag=0
-	n=$1  #121
-	while [ $n -ne 0 ]
+function isPalindrome(){
+	local temp=$1;
+	local sum=0;
+	while [ $temp -ne 0 ]
 	do
-		temp_1=$(($n%10)); #1 2 1
-		temp_2=$(($n-temp_1)); 121-1=120  10 0
-		n=$((temp_2/10)); 120/10 12  10/10 1 0
-		if [ $flag -eq 0 ];
-		then
-			temp_3=$(($temp_1*10)); 10
-			flag=1;
-		elif [ $flag -eq 1 ]
-		then
-			temp_3=$(((($temp_3+$temp_1))*10))
-		fi
+		local remainder=$(($temp%10));
+		sum=$(($sum*10+$remainder));
+		temp=$(($temp/10));
 	done
-	echo "$(($temp_3/10))"
 
+	if [ $1 -eq $sum ]
+	then
+		echo $1
+	else
+		echo "$1 is not Palindrome"
+		break;
+	fi
 }
 
-read -p "Enter the first number:" n
-read -p "Enter the second number:" m
-if [ "$( palindrome $n )" -eq $n ]
-then
-	echo "$n is a palindrome"
-else
-	echo "$n is not a palindrome"
-fi
+read -p "Enter number 1 : " number1
+read -p "Enter number 2 : " number2
 
-if [ "$( palindrome $m )" -eq $m ]
+checkPalindrome=$( isPalindrome $number1 )
+checkPalindrome2=$( isPalindrome $number2 )
+
+if [ $checkPalindrome -eq $checkPalindrome2 ]
 then
-	echo "$m is a palindrome"
+	echo "Both numbers are palindrome and same ! "
 else
-	echo "$m is not a palindrome"
+	echo "Both numbers are not same! "
 fi
