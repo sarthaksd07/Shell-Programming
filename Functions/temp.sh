@@ -1,20 +1,32 @@
 #!/bin/bash -x
 
-echo "1.Convert Celsius temp into Fahrenheit"
-echo "2.Convert Fahrenheit into Celsius"
-read -p "Select your choice (1-2):" choice
+function degFarhenite(){
+	if [ $1 -ge 0 -a $1 -le 100 ]
+	then
+		degF=$((($degC*9/5)+32));
+	else
+		echo "Enter temprature between 0-100 celsius:"
+	fi
+}
 
-	if [ $choice -eq 1 ]
-		then
-				echo "Enter the number:" tc
-			tf=$((($tc*9/5)+32))
-				echo $tc -eq $tf
+function degCelsius(){
+	if [ $1 -ge 32 -a $1 -le 212 ]
+	then
+		degC=$((($degF-32)*9/5));
+	else
+		echo "Enter temprature between 32-212 farhenite:"
+	fi 
+}
 
-			elif [ $choice -eq 2 ]
-			then
-				echo "Enter the number:" tf
-			tc=$((($fc-32)*9/5))
-				echo $tf -eq $tc
-		else
-	echo "Please select 1 or 2 only"
-fi
+read -p "1. Celsius to Farhenite  2. Farhenite to Celsius:" choice
+
+case $choice in
+	1)
+		read -p "Enter temprature in celsius: " degC
+		$( degFarhenite $degC );
+		;;
+	2)
+		read -p "Enter temprature in Farhenite: " degF
+		$( degCelsius $degF );
+		;;
+esac
