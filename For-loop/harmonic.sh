@@ -1,9 +1,12 @@
-#!/bin/bash -x
-
-read -p "Enter number upto which harmonic number to be displayed : " number
-
-result=0;
-for (( num=1; $num<$number ; num++ ))
+#! /bin/bash -x
+n=$1; #command line argument
+for ((x=1; x<=$(($n)); x++))
 do
-	result=`echo "sale=2; ($result+(1/$num))"`;
+	if [ $x -eq $n ];
+	then
+		ans="$ans(1/$x)";
+	else
+		ans="$ans(1/$x)+";
+	fi
+	echo $ans;
 done
